@@ -1,4 +1,4 @@
-.PHONY: all awscli shadowsocks
+.PHONY: all aria2 awscli shadowsocks
 
 all: aria2 awscli shadowsocks
 

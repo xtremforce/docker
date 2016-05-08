@@ -1,6 +1,8 @@
 Collection of Docker Apps
 ===
 
+[![Build Status](https://travis-ci.org/imwithye/docker.svg?branch=master)](https://travis-ci.org/imwithye/docker)
+
 This repo contains a great collection of docker apps. You may pull them from docker hub or build them locally.
 
 

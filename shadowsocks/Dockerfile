@@ -1,7 +1,8 @@
-FROM python:2.7
+FROM alpine
 MAINTAINER Ciel <me@ciel.im>
 
-RUN pip install shadowsocks
+RUN apk --update add \
+	bash python py-pip && pip install shadowsocks
 
 EXPOSE 8388
 

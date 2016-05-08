@@ -1,8 +1,8 @@
-FROM ubuntu:14.04
+FROM alpine
 MAINTAINER Ciel <me@ciel.im>
 
-RUN apt-get update
-RUN apt-get install -y curl git zsh vim wget tmux
+RUN apk --update add \
+	curl wget perl python git bash zsh
 RUN curl -sSL dot.ciel.im | bash
 
 ENTRYPOINT ["zsh"]

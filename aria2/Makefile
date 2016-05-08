@@ -1,2 +1,2 @@
-aria2: Dockerfile install.sh run.sh
+aria2: Dockerfile run.sh
 	docker build -t imwithye/aria2 .

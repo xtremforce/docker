@@ -1,18 +1,8 @@
-.PHONY: all aria2 awscli htop shadowsocks zsh
+SUBDIRS := $(wildcard */.)
 
-all: aria2 awscli htop shadowsocks zsh
+all: $(SUBDIRS)
 
-aria2:
-	cd aria2 && make
+$(SUBDIRS):
+	$(MAKE) -C $@
 
-awscli:
-	cd awscli && make
-
-htop:
-	cd htop && make
-
-shadowsocks:
-	cd shadowsocks && make
-
-zsh:
-	cd zsh && make
+.PHONY: all $(SUBDIRS)

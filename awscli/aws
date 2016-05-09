@@ -1,4 +1,4 @@
 #!/bin/sh
 
 mkdir -p $HOME/.aws
-docker run -it --rm -v /$HOME/.aws:/root/.aws imwithye/awscli $@
+docker run -it --rm -v /$HOME:/root -v //:/rootfs:ro imwithye/awscli $@

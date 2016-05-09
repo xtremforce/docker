@@ -6,6 +6,8 @@ Make sure you have docker installed, or your docker has been successfully connec
 Simply copy `aws` to your system path.
 ```bash
 export PATH=$PATH:$HOME/bin
+curl -sSL https://raw.githubusercontent.com/imwithye/docker/master/awscli/aws > aws
+chmod +x aws
 cp aws $HOME/bin
 ```
 

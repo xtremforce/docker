@@ -1,12 +1,15 @@
-.PHONY: all aria2 awscli shadowsocks zsh
+.PHONY: all aria2 awscli htop shadowsocks zsh
 
-all: aria2 awscli shadowsocks zsh
+all: aria2 awscli htop shadowsocks zsh
 
 aria2:
 	cd aria2 && make
 
 awscli:
 	cd awscli && make
+
+htop:
+	cd htop && make
 
 shadowsocks:
 	cd shadowsocks && make

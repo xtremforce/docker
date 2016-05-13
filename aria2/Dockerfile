@@ -7,7 +7,7 @@ RUN apk --update add \
 RUN set -xe \
     && rm -rf /var/cache/apk/* \
     && aria2c https://github.com/tianon/gosu/releases/download/1.9/gosu-amd64 -o /usr/local/bin/gosu \
-    && chmod +x /usr/local/bin/gosu \
+    && chmod +x /usr/local/bin/gosu
 
 VOLUME /download
 VOLUME /conf

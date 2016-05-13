@@ -7,7 +7,8 @@ RUN apk --update add \
 RUN set -xe \
     && rm -rf /var/cache/apk/* \
     && aria2c https://github.com/tianon/gosu/releases/download/1.9/gosu-amd64 -o /usr/local/bin/gosu \
-    && chmod +x /usr/local/bin/gosu
+    && chmod +x /usr/local/bin/gosu \
+    && adduser -D aria2
 
 VOLUME /download
 VOLUME /conf
@@ -18,4 +19,5 @@ EXPOSE 6800
 CMD set -xe \
     && chmod -R 777 /download \
     && chmod -R 777 /conf \
-    && gosu nobody aria2c --conf-path=/conf/aria2.conf
+    && chown -R aria2:aria2 /etc/aria2
+    && gosu aria2 aria2c --conf-path=/conf/aria2.conf

@@ -19,5 +19,5 @@ EXPOSE 6800
 CMD set -xe \
     && chmod -R 777 /download \
     && chmod -R 777 /conf \
-    && chown -R aria2:aria2 /etc/aria2
+    && chown -R aria2:aria2 /etc/aria2 \
     && gosu aria2 aria2c --conf-path=/conf/aria2.conf

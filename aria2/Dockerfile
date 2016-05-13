@@ -1,10 +1,11 @@
-FROM alpine
-MAINTAINER Ciel <me@ciel.im>
+FROM alpine:edge
+MAINTAINER XForce <hello@web.com>
 
 RUN apk --update add \
 	bash aria2
 
-VOLUME /data
+VOLUME /download
+VOLUME /conf
 EXPOSE 6800
 
 COPY run.sh /run.sh

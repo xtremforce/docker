@@ -1,7 +1,7 @@
 FROM alpine:edge
 MAINTAINER XForce <hello@web.com>
 
-RUN apk --update add \
+RUN apk --update --no-cache add \
 	bash aria2
 
 #RUN set -xe \

@@ -61,7 +61,7 @@ VOLUME /conf
 # RUN cp /etc/shadowsocks-libev/config.json /conf/ss-server-sample.json
 RUN cp /etc/privoxy/config /conf/privoxy-sample.txt
 
-USER nobody
+#USER nobody
 
 
 
@@ -69,6 +69,7 @@ USER nobody
 # Expose ports and entrypoint:
 #------------------------------------------------------------------------------
 EXPOSE 11080/tcp 11080/udp
-EXPOSE 8118
+EXPOSE 18118
 
-CMD ["/conf/run.sh"]
+#CMD ["/conf/run.sh"]
+ENTRYPOINT ["/conf/run.sh"]

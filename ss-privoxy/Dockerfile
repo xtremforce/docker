@@ -57,8 +57,9 @@ RUN runDeps="\
 RUN rm /var/cache/apk/*	
 
 VOLUME /conf
-COPY /etc/shadowsocks-libev/config.json /conf/shadowsocks_sample.json
-COPY /etc/privoxy/config /conf/privoxy_sample.txt
+
+# RUN cp /etc/shadowsocks-libev/config.json /conf/ss-server-sample.json
+RUN cp /etc/privoxy/config /conf/privoxy-sample.txt
 
 USER nobody
 
@@ -67,8 +68,7 @@ USER nobody
 #------------------------------------------------------------------------------
 # Expose ports and entrypoint:
 #------------------------------------------------------------------------------
-EXPOSE 11080/tcp
-EXPOSE 11080/udp
+EXPOSE 11080/tcp 11080/udp
 EXPOSE 8118
 
 CMD ["/conf/run.sh"]

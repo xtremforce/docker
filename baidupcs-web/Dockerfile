@@ -4,7 +4,7 @@ USER root
 WORKDIR /
 
 RUN	set -x && \
-	apk add --no-cache --update wget unzip && \
+	apk add --no-cache --update wget unzip curl && \
 	export VER=`curl --silent "https://api.github.com/repos/liuzhuoling2011/baidupcs-web/releases/latest" |grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/'` && \
 	wget --no-check-certificate https://github.com/liuzhuoling2011/baidupcs-web/releases/download/$VER/BaiduPCS-Go-$VER-linux-amd64.zip && \
 	unzip BaiduPCS-Go-$VER-linux-amd64.zip && \

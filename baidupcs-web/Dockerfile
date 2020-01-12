@@ -1,5 +1,5 @@
 FROM alpine:edge
-MAINTAINER XForce <hello@web.com>
+MAINTAINER XForce <xforce4u@gmail.com>
 USER root
 WORKDIR /
 

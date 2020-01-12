@@ -1,5 +1,5 @@
 FROM alpine:edge
-MAINTAINER XForce <hello@web.com>
+MAINTAINER XForce <xforce4u@gmail.com>
 
 RUN apk --update --no-cache add \
 	bash aria2

@@ -42,9 +42,9 @@ RUN runDeps="\
 	&& tar xf libsodium-$LIBSODIUM_VER.tar.gz \
 	&& cd libsodium-$LIBSODIUM_VER \
 	&& ./configure --prefix=/usr && make \
-	&& sudo make install \
+	&& make install \
 	&& cd .. \
-	&& sudo ldconfig \
+	&& ldconfig \
 	&& echo "------------------------" \
 	&& echo " Install  MbedTLS" \
 	&& echo "------------------------" \
@@ -53,9 +53,9 @@ RUN runDeps="\
 	&& tar xf mbedtls-$MBEDTLS_VER-gpl.tgz \
 	&& cd mbedtls-$MBEDTLS_VER \
 	&& make SHARED=1 CFLAGS="-O2 -fPIC" \
-	&& sudo make DESTDIR=/usr install \
+	&& make DESTDIR=/usr install \
 	&& cd .. \
-	&& sudo ldconfig \
+	&& ldconfig \
 	&& echo "------------------------" \
 	&& echo "Install Shadowsocks" \
 	&& echo "------------------------" \

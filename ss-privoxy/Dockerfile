@@ -1,5 +1,7 @@
 # Dockerfile for shadowsocks-libev based alpine
 # Copyright (C) 2018 Teddysun <i@teddysun.com>
+#UPDATED with V2ray-Plugin!
+
 # Reference URL:
 # https://github.com/shadowsocks/shadowsocks-libev
 # https://github.com/teddysun/shadowsocks_install/tree/master/docker/shadowsocks-libev
@@ -8,8 +10,7 @@ FROM alpine:latest
 LABEL maintainer="Teddysun <i@teddysun.com>"
 
 RUN \
-apk --update --upgrade add \
-privoxy \
+apk --update --upgrade add privoxy curl \
 && export LIBEV_VER=`curl --silent "https://api.github.com/repos/shadowsocks/shadowsocks-libev/releases/latest" |grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/'` \
 && export LIBEV_NAME=shadowsocks-libev-${LIBEV_VER} \
 && export LIBEV_RELEASE=https://github.com/shadowsocks/shadowsocks-libev/releases/download/v${LIBEV_VER}/${LIBEV_NAME}.tar.gz \
@@ -20,7 +21,6 @@ RUN runDeps="\
 		tar \
 		git \
 		wget \
-		curl \
 		build-base \
 		c-ares-dev \
 		autoconf \
@@ -31,6 +31,7 @@ RUN runDeps="\
 		linux-headers \
 		mbedtls-dev \
 		pcre-dev \
+		asciidoc \
 	"; \
 	set -ex \
 	&& apk add --no-cache --virtual .build-deps ${runDeps} \

@@ -10,7 +10,7 @@ FROM alpine:latest
 LABEL maintainer="Teddysun <i@teddysun.com>"
 
 RUN \
-apk --update --upgrade add privoxy \
+apk --update --upgrade add privoxy
 
 RUN runDeps="\
 		tar \
@@ -34,13 +34,17 @@ RUN runDeps="\
 	&& apk add --no-cache --virtual .build-deps ${runDeps} \
 	&& mkdir -p /tmp/libev \
 	&& cd /tmp/libev \
+	&& echo "------------------------" \
+	&& echo "Install Shadowsocks" \
+	&& echo "------------------------" \
 	&& git clone https://github.com/shadowsocks/shadowsocks-libev.git \
 	&& cd shadowsocks-libev \
 	&& git submodule update --init --recursive \
 	&& ./autogen.sh && ./configure && make \
 	&& make install \
-	\
-	\
+	&& echo "------------------------" \
+	&& echo "Install v2rayplugin" \
+	&& echo "------------------------" \
 	&& mkdir -p /tmp/v2rayplugin \
 	&& cd /tmp/v2rayplugin \
 	&& export V2RAY_PLUGIN_VER=`curl --silent "https://api.github.com/repos/shadowsocks/v2ray-plugin/releases/latest" |grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/'` \
@@ -48,6 +52,9 @@ RUN runDeps="\
 	&& wget -qO v2ray_plugin.tar.gz ${V2RAY_PLUGIN_RELEASE} \
         && tar xf v2ray_plugin.tar.gz \
         && mv v2ray-plugin_linux_amd64 /usr/local/bin/v2ray-plugin \
+	&& echo "------------------------" \
+	&& echo "Clean" \
+	&& echo "------------------------" \
 	&& apk add --no-cache rng-tools \
 		$(scanelf --needed --nobanner /usr/bin/ss-* \
 		| awk '{ gsub(/,/, "\nso:", $2); print "so:" $2 }' \

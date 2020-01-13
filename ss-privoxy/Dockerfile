@@ -32,6 +32,7 @@ RUN runDeps="\
 		mbedtls-dev \
 		pcre-dev \
 		asciidoc \
+		xmlto \
 	"; \
 	set -ex \
 	&& apk add --no-cache --virtual .build-deps ${runDeps} \

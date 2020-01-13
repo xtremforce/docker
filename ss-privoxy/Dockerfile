@@ -29,6 +29,7 @@ RUN runDeps="\
 		pcre-dev \
 		asciidoc \
 		xmlto \
+		python2 \
 	"; \
 	set -ex \
 	&& apk add --no-cache --virtual .build-deps ${runDeps} \

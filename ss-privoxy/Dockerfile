@@ -10,17 +10,13 @@ FROM alpine:latest
 LABEL maintainer="Teddysun <i@teddysun.com>"
 
 RUN \
-apk --update --upgrade add privoxy curl \
-&& export LIBEV_VER=`curl --silent "https://api.github.com/repos/shadowsocks/shadowsocks-libev/releases/latest" |grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/'` \
-&& export LIBEV_NAME=shadowsocks-libev-${LIBEV_VER} \
-&& export LIBEV_RELEASE=https://github.com/shadowsocks/shadowsocks-libev/releases/download/v${LIBEV_VER}/${LIBEV_NAME}.tar.gz \
-&& export V2RAY_PLUGIN_VER=`curl --silent "https://api.github.com/repos/shadowsocks/v2ray-plugin/releases/latest" |grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/'` \
-&& export V2RAY_PLUGIN_RELEASE=https://github.com/shadowsocks/v2ray-plugin/releases/download/$V2RAY_PLUGIN_VER/v2ray-plugin-linux-amd64-$V2RAY_PLUGIN_VER.tar.gz
+apk --update --upgrade add privoxy \
 
 RUN runDeps="\
 		tar \
 		git \
 		wget \
+		curl \
 		build-base \
 		c-ares-dev \
 		autoconf \
@@ -43,9 +39,13 @@ RUN runDeps="\
 	&& git submodule update --init --recursive \
 	&& ./autogen.sh && ./configure && make \
 	&& make install \
+	\
+	\
 	&& mkdir -p /tmp/v2rayplugin \
 	&& cd /tmp/v2rayplugin \
-	&& wget -qO v2ray_plugin.tar.gz $V2RAY_PLUGIN_RELEASE \
+	&& export V2RAY_PLUGIN_VER=`curl --silent "https://api.github.com/repos/shadowsocks/v2ray-plugin/releases/latest" |grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/'` \
+	&& export V2RAY_PLUGIN_RELEASE=https://github.com/shadowsocks/v2ray-plugin/releases/download/$V2RAY_PLUGIN_VER/v2ray-plugin-linux-amd64-$V2RAY_PLUGIN_VER.tar.gz
+	&& wget -qO v2ray_plugin.tar.gz ${V2RAY_PLUGIN_RELEASE} \
         && tar xf v2ray_plugin.tar.gz \
         && mv v2ray-plugin_linux_amd64 /usr/local/bin/v2ray-plugin \
 	&& apk add --no-cache rng-tools \

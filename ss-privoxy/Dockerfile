@@ -29,34 +29,11 @@ RUN runDeps="\
 		pcre-dev \
 		asciidoc \
 		xmlto \
-		python2 \
 	"; \
 	set -ex \
 	&& apk add --no-cache --virtual .build-deps ${runDeps} \
 	&& mkdir -p /tmp/libev \
 	&& cd /tmp/libev \
-	&& echo "------------------------" \
-	&& echo " Install libsodium" \
-	&& echo "------------------------" \
-	&& export LIBSODIUM_VER=1.0.18 \
-	&& wget https://download.libsodium.org/libsodium/releases/libsodium-$LIBSODIUM_VER.tar.gz \
-	&& tar xf libsodium-$LIBSODIUM_VER.tar.gz \
-	&& cd libsodium-$LIBSODIUM_VER \
-	&& ./configure --prefix=/usr && make \
-	&& make install \
-	&& cd .. \
-	&& ldconfig /etc/ld.so.conf.d \
-	&& echo "------------------------" \
-	&& echo " Install  MbedTLS" \
-	&& echo "------------------------" \
-	&& export MBEDTLS_VER=2.16.3 \
-	&& wget https://tls.mbed.org/download/mbedtls-$MBEDTLS_VER-gpl.tgz \
-	&& tar xf mbedtls-$MBEDTLS_VER-gpl.tgz \
-	&& cd mbedtls-$MBEDTLS_VER \
-	&& make SHARED=1 CFLAGS="-O2 -fPIC" \
-	&& make DESTDIR=/usr install \
-	&& cd .. \
-	&& ldconfig /etc/ld.so.conf.d \
 	&& echo "------------------------" \
 	&& echo "Install Shadowsocks" \
 	&& echo "------------------------" \
@@ -78,12 +55,15 @@ RUN runDeps="\
 	&& echo "------------------------" \
 	&& echo "Clean" \
 	&& echo "------------------------" \
-	&& apk add --no-cache rng-tools \
-		$(scanelf --needed --nobanner /usr/bin/ss-* \
-		| awk '{ gsub(/,/, "\nso:", $2); print "so:" $2 }' \
-		| xargs -r apk info --installed \
-		| sort -u) \
-	&& apk del .build-deps \
+	&& ls /usr/bin/ss-* | xargs -n1 setcap cap_net_bind_service+ep \
+ 	&& apk del .build-deps \
+ 	# Runtime dependencies setup
+ 	&& apk add --no-cache \
+	      ca-certificates \
+	      rng-tools \
+	      $(scanelf --needed --nobanner /usr/bin/ss-* \
+	      | awk '{ gsub(/,/, "\nso:", $2); print "so:" $2 }' \
+	      | sort -u) \
 	&& cd /tmp \
 	&& rm -rf /tmp/v2rayplugin \
 	&& rm -rf /tmp/libev

@@ -40,8 +40,9 @@ RUN runDeps="\
 	&& git clone https://github.com/shadowsocks/shadowsocks-libev.git \
 	&& cd shadowsocks-libev \
 	&& git submodule update --init --recursive \
-	&& ./autogen.sh && ./configure && make \
-	&& make install \
+	&& ./autogen.sh \
+ 	&& ./configure --prefix=/usr --disable-documentation \
+ 	&& make install \
 	&& echo "------------------------" \
 	&& echo "Install v2rayplugin" \
 	&& echo "------------------------" \

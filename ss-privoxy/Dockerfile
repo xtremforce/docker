@@ -21,6 +21,7 @@ RUN runDeps="\
 		c-ares-dev \
 		autoconf \
 		automake \
+		libcap \
 		libev-dev \
 		libtool \
 		libsodium-dev \

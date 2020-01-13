@@ -44,7 +44,7 @@ RUN runDeps="\
 	&& ./configure --prefix=/usr && make \
 	&& make install \
 	&& cd .. \
-	&& ldconfig \
+	&& ldconfig /etc/ld.so.conf.d \
 	&& echo "------------------------" \
 	&& echo " Install  MbedTLS" \
 	&& echo "------------------------" \
@@ -55,7 +55,7 @@ RUN runDeps="\
 	&& make SHARED=1 CFLAGS="-O2 -fPIC" \
 	&& make DESTDIR=/usr install \
 	&& cd .. \
-	&& ldconfig \
+	&& ldconfig /etc/ld.so.conf.d \
 	&& echo "------------------------" \
 	&& echo "Install Shadowsocks" \
 	&& echo "------------------------" \

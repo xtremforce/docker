@@ -44,7 +44,7 @@ RUN runDeps="\
 	&& mkdir -p /tmp/v2rayplugin \
 	&& cd /tmp/v2rayplugin \
 	&& export V2RAY_PLUGIN_VER=`curl --silent "https://api.github.com/repos/shadowsocks/v2ray-plugin/releases/latest" |grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/'` \
-	&& export V2RAY_PLUGIN_RELEASE=https://github.com/shadowsocks/v2ray-plugin/releases/download/$V2RAY_PLUGIN_VER/v2ray-plugin-linux-amd64-$V2RAY_PLUGIN_VER.tar.gz
+	&& export V2RAY_PLUGIN_RELEASE=https://github.com/shadowsocks/v2ray-plugin/releases/download/$V2RAY_PLUGIN_VER/v2ray-plugin-linux-amd64-$V2RAY_PLUGIN_VER.tar.gz \
 	&& wget -qO v2ray_plugin.tar.gz ${V2RAY_PLUGIN_RELEASE} \
         && tar xf v2ray_plugin.tar.gz \
         && mv v2ray-plugin_linux_amd64 /usr/local/bin/v2ray-plugin \

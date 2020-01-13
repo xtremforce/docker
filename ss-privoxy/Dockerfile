@@ -20,6 +20,7 @@ RUN runDeps="\
 		tar \
 		git \
 		wget \
+		curl \
 		build-base \
 		c-ares-dev \
 		autoconf \
@@ -36,6 +37,7 @@ RUN runDeps="\
 	&& mkdir -p /tmp/libev \
 	&& cd /tmp/libev \
 	&& git clone https://github.com/shadowsocks/shadowsocks-libev.git \
+	&& cd shadowsocks-libev \
 	&& git submodule update --init --recursive \
 	&& ./autogen.sh && ./configure && make \
 	&& make install \

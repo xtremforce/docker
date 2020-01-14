@@ -77,7 +77,6 @@ RUN runDeps="\
 RUN rm /var/cache/apk/*	
 
 VOLUME /conf
-VOLUME ["/proc/sys/net/ipv4"]
 
 # RUN cp /etc/shadowsocks-libev/config.json /conf/ss-server-sample.json
 RUN cp /etc/privoxy/config /conf/privoxy-sample.txt

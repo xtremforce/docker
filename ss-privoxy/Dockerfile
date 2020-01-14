@@ -9,8 +9,12 @@
 FROM alpine:latest
 LABEL maintainer="Teddysun <i@teddysun.com>"
 
-RUN \
-apk --update --upgrade add privoxy
+# 设置时区为上海
+RUN apk add tzdata && cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
+    && echo "Asia/Shanghai" > /etc/timezone \
+    && apk del tzdata
+
+RUN apk --update --upgrade add privoxy \
 
 RUN runDeps="\
 		tar \
@@ -73,6 +77,7 @@ RUN runDeps="\
 RUN rm /var/cache/apk/*	
 
 VOLUME /conf
+VOLUME ["/proc/sys/net/ipv4"]
 
 # RUN cp /etc/shadowsocks-libev/config.json /conf/ss-server-sample.json
 RUN cp /etc/privoxy/config /conf/privoxy-sample.txt

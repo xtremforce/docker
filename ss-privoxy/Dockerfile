@@ -14,7 +14,7 @@ RUN apk add tzdata && cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
     && echo "Asia/Shanghai" > /etc/timezone \
     && apk del tzdata
 
-RUN apk --update --upgrade add privoxy \
+RUN apk --update --upgrade add privoxy
 
 RUN runDeps="\
 		tar \

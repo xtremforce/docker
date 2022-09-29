@@ -1,5 +1,4 @@
 FROM alpine:edge
-MAINTAINER XForce <xforce4u@gmail.com>
 
 RUN apk --update --no-cache add \
 	bash aria2
@@ -15,7 +14,9 @@ VOLUME /download
 VOLUME /conf
 EXPOSE 6800
 
-#COPY run.sh /run.sh
+# COPY run.sh /run.sh
+COPY aria2/run_aria2_docker.sh /conf/run_aria2_docker.sh
+COPY aria2/aria2.conf /conf/aria2.conf
 #CMD ["bash", "/run.sh"]
 CMD ["bash", "/conf/run_aria2_docker.sh"]
 #CMD set -xe \

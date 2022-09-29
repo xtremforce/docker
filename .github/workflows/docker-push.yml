@@ -5,14 +5,14 @@ on:
         description: "The tag version you want to build"
   push:
     paths:
-      - "v2fx.sh"
-      - "Dockerfile"
+      - "v2fx/v2fx.sh"
+      - "v2fx/Dockerfile"
       - ".github/workflows/docker-push.yml"
   pull_request:
     types: [opened, synchronize, reopened]
     paths:
-      - "v2fx.sh"
-      - "Dockerfile"
+      - "v2fx/v2fx.sh"
+      - "v2fx/Dockerfile"
       - ".github/workflows/docker-push.yml"
 
 name: docker push
@@ -67,4 +67,4 @@ jobs:
           --tag "${{ steps.prepare.outputs.docker_image }}:${{ steps.prepare.outputs.docker_tag }}" \
           --tag "${{ steps.prepare.outputs.docker_image }}:latest" \
           --build-arg TAG=${{ steps.prepare.outputs.docker_tag }} \
-          --file Dockerfile .
+          --file v2fx/Dockerfile .

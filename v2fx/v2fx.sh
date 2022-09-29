@@ -35,8 +35,9 @@ DGST_FILE="v2ray-linux-${ARCH}.zip.dgst"
 echo "Downloading binary file: ${V2RAY_FILE}"
 echo "Downloading binary file: ${DGST_FILE}"
 
-
-LatestVer=`curl --silent "https://api.github.com/repos/v2fly/v2ray-core/releases/latest" |grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/'`
+# No CURL here
+#LatestVer=`curl --silent "https://api.github.com/repos/v2fly/v2ray-core/releases/latest" |grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/'`
+LatestVer=`wget -qO- "https://api.github.com/repos/v2fly/v2ray-core/releases/latest" |grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/'`
 
 # wget -O ${PWD}/v2ray.zip https://github.com/v2fly/v2ray-core/releases/download/${TAG}/${V2RAY_FILE} > /dev/null 2>&1
 # wget -O ${PWD}/v2ray.zip.dgst https://github.com/v2fly/v2ray-core/releases/download/${TAG}/${DGST_FILE} > /dev/null 2>&1

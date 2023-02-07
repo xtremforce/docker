@@ -7,13 +7,13 @@ on:
     paths:
       - "v2fx/v2fx.sh"
       - "v2fx/Dockerfile"
-      - ".github/workflows/docker-push.yml"
+      - ".github/workflows/v2fx-docker-push.yml"
   pull_request:
     types: [opened, synchronize, reopened]
     paths:
       - "v2fx/v2fx.sh"
       - "v2fx/Dockerfile"
-      - ".github/workflows/docker-push.yml"
+      - ".github/workflows/v2fx-docker-push.yml"
 
 name: V2FX docker push
 jobs:

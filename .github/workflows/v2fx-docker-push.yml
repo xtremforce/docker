@@ -15,7 +15,7 @@ on:
       - "v2fx/Dockerfile"
       - ".github/workflows/docker-push.yml"
 
-name: docker push
+name: V2FX docker push
 jobs:
   build:
     runs-on: ubuntu-latest

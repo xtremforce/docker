@@ -56,7 +56,9 @@ echo "Download binary file: ${V2RAY_FILE} ${DGST_FILE} completed"
 
 # by xforce
 SHA_Result=$(openssl dgst -sha512 v2ray.zip | sed -r s'/[^=]+.(.*)/\1/g' | sed 's/ //g')
-CheckSHA=$(cat v2ray.zip.dgst | grep '${SHA_Result}')
+echo " SHA_Result = ${SHA_Result}"
+CheckSHA=$(cat v2ray.zip.dgst | grep ${SHA_Result})
+echo " CheckSHA = $(CheckSHA)"
 
 if [ "${CheckSHA}" = "" ]; then
     echo " Check have not passed yet " && exit 1

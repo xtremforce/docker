@@ -45,7 +45,7 @@ jobs:
         name: Build and push
         uses: docker/build-push-action@v5
         with:
-          context: aria2/
-          dockerfile: aria2/Dockerfile
+          context: .
+          dockerfile: ./aria2/Dockerfile
           push: true
           tags: xforce/aria2:latest

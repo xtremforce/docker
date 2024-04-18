@@ -1,6 +1,8 @@
 name: Aria2 Docker Push
 
 on:
+  workflow_dispatch:
+  
   pull_request:
     branches: 'master'
     paths:

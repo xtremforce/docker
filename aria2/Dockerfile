@@ -1,7 +1,13 @@
 FROM alpine:edge
 
+ENV PUID=1000
+ENV PGID=1000
+
 RUN apk --update --no-cache add \
-	bash aria2
+	bash \
+ 	aria2 \
+  	sudo \
+   	shadow
 
 #RUN set -xe \
 #    && rm -rf /var/cache/apk/* \
@@ -9,6 +15,8 @@ RUN apk --update --no-cache add \
 #    && chmod +x /usr/local/bin/gosu
     
 #RUN addgroup aria2 && adduser -s /bin/bash -D -G aria2 aria2
+RUN groupadd -o -g 1000 aria2 \
+    && useradd -o -g 1000 -u 1000 aria2
 
 VOLUME /download
 VOLUME /conf
